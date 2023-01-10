@@ -22,9 +22,7 @@ const navigate = useNavigate();
   },[]);
 
 
-  return (
-    <div>EliminarProducto</div>
-  )
+  return (<></>)
 }
 
 export default EliminarProducto

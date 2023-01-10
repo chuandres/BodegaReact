@@ -1,5 +1,4 @@
 import './App.css';
-// import Nav from './components/nav';
 import AgregarProducto from "./components/AgregarProducto";
 import VerProductos from './components/VerProductos';
 import EditarProductos from './components/EditarProductos';
@@ -9,7 +8,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
 } from "react-router-dom";
 function App() {
   return (

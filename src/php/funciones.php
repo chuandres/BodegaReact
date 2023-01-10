@@ -14,6 +14,13 @@ function actualizarProducto($producto)
     return $sentencia->execute([$producto->nombre, $producto->costodolar, $producto->precio, $producto->estado, $producto->ganancia, $producto->almacen, $producto->id]);
 }
 
+function actualizarDolarDia($producto)
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->prepare("UPDATE valores SET nombre=?, valor=?, WHERE id=?");
+    return $sentencia->execute([$producto->nombre, $producto->valor, $producto->id]);
+}
+
 function obtenerProductoPorId($id)
 {
     $db = obtenerConexion();
@@ -27,6 +34,13 @@ function obtenerProductos(){
     $sentencia = $db->query("SELECT id, nombre, costodolar, precio, estado, ganancia, almacen  FROM productos");
     return $sentencia->fetchAll();
 }
+
+function obtenerDolarDia(){
+    $db = obtenerConexion();
+    $sentencia = $db->query("SELECT id, nombre, valor FROM valores");
+    return $sentencia->fetchAll();
+}
+
 
 function guardarProducto($producto){
     $bd = obtenerConexion();
