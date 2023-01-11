@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const FilaDeTablaDeProducto = (props) => {
-  console.log(props.dolarDia);
   return (
     <>
     <tr>

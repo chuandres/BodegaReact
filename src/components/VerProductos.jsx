@@ -7,7 +7,9 @@ import { Link, useNavigate, } from "react-router-dom";
 const VerProductos = () => {
 
     const [productos, setProductos] = useState([]);
-    const [valorDolarDia, setvalorDolarDia] = useState({});
+    const [valorDolarDia, setvalorDolarDia] = useState({
+        valor: ""
+    });
     const navigate = useNavigate();   
 
 function handleChange(e) {
@@ -28,15 +30,7 @@ function handleSubmit(e) {
     });
   }
         
-useEffect(() => {
-    fetch(`${Constantes.RUTA_API}/src/php/obtener_productos.php`)
-    .then((response) => { 
-      if(response.ok){
-        return response.json();
-      }
-      throw response;
-    })
-    .then((data)=>{
+  useEffect(() => {
       fetch(`${Constantes.RUTA_API}/src/php/obtener_dolar_dia.php`)
       .then((response) => {
         if(response.ok){
@@ -44,14 +38,23 @@ useEffect(() => {
         }
         throw response;
       }).then((data1)=>{
-            setvalorDolarDia(data1[0]);
+          setvalorDolarDia(data1[0]);
       });
+
+    fetch(`${Constantes.RUTA_API}/src/php/obtener_productos.php`)
+    .then((response) => { 
+
+      if(response.ok){
+        return response.json();
+      }
+      throw response;
+    })
+    .then((data)=>{
       return setProductos(data);
     })
     .catch(error => {
       console.log("error", error)
     });
-    
   },[]);
 
   return (
@@ -59,11 +62,11 @@ useEffect(() => {
           <div className="column">
               <h1 className="is-size-3">Productos</h1>
               <Link to={`/productos/agregar`} className="button is-success">AGREGAR PRODUCTO</Link>
-              {/* <form action="" onSubmit={handleSubmit}>
+              <form action="" onSubmit={handleSubmit}>
                     <h4>Dolar al día de hoy:</h4>
                     <input type="text" name="valor" value={valorDolarDia.valor} onChange={handleChange}/>
                     <input type="submit" value="Submit" />
-                </form>      */}
+                </form>     
           </div>
           <div className="table-container">
               <table className="table is-fullwidth is-bordered">
