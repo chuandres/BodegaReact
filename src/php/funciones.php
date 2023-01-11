@@ -17,7 +17,7 @@ function actualizarProducto($producto)
 function actualizarDolarDia($producto)
 {
     $bd = obtenerConexion();
-    $sentencia = $bd->prepare("UPDATE valores SET nombre=?, valor=?, WHERE id=?");
+    $sentencia = $bd->prepare("UPDATE valores SET nombre=?, valor=?  WHERE id=?");
     return $sentencia->execute([$producto->nombre, $producto->valor, $producto->id]);
 }
 
